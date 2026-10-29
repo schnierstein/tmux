@@ -29,7 +29,7 @@ vpn_function() {
         vpn_label=$(get_tmux_option "@dracula-network-vpn-label" "VPN-ON")
         echo "$vpn_label"
       fi
-    elif [ $tailscale_installed ]; then
+    elif [ $tailscale_installed -eq 0 ]; then
       # if tailscale is installed
       #
       # https://www.reddit.com/r/Tailscale/comments/18dirro/is_there_a_way_i_can_tell_which_exit_node_i_am/
@@ -67,7 +67,7 @@ vpn_function() {
     if [ -z "$vpn" ]; then
       echo ""
 
-    elif [ $tailscale_installed ] && [ -z "$is_not_tailscale" ]; then
+    elif [ $tailscale_installed -eq 0 ] && [ -z "$is_not_tailscale" ]; then
       # if tailscale is installed and no other vpn is connected. this is because tailscale will
       # always show as connected for some reason.
       #
